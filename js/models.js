@@ -25,7 +25,8 @@ class Story {
 
   getHostName() {
     // UNIMPLEMENTED: complete this function!
-    return "hostname.com";
+    const url = new URL(this.url)
+    return url.hostname;
   }
 }
 
@@ -73,9 +74,8 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  async addStory(user, newStory) {
-    //  storyId, title, author, url, username, createdAt
-    // console.log("user:", user, "newStory:", newStory)
+  static async addStory(user, newStory) {
+    //  write newStory info and user info into databse, returns a storyData object
     const storyData = await axios({
       url: `${BASE_URL}/stories`,
       method: "POST",
@@ -89,7 +89,7 @@ class StoryList {
       }
     });
     // console.log(storyData);
-
+    // get storyId, title, author, url, username, createdAt from storyData, create and return newStory
     const storyId = storyData.data.story.storyId;
     const title = storyData.data.story.title;
     const author = storyData.data.story.author;

@@ -50,3 +50,22 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+
+/** function is evoked upon form submit, gets data from $storyForm
+ * call addStory method in models.js, and put story on page.
+ */
+async function handleStoryFormSubmit(evt) {
+  evt.preventDefault();
+
+  let storyInput = {
+    title: $("#story-title").val(),
+    author: $("#story-author").val(),
+    url: $("#story-url").val()
+  }
+  await StoryList.addStory(currentUser, storyInput);
+  // console.log(newStory);
+  await getAndShowStoriesOnStart()
+  $storyForm.hide();
+}
+
+$storyForm.on("submit", handleStoryFormSubmit)
