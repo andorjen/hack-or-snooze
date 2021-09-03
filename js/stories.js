@@ -25,6 +25,9 @@ function generateStoryMarkup(story) {
   const hostName = story.getHostName();
   return $(`
       <li id="${story.storyId}">
+        <span class="star">
+           <i class="far fa-star"> </i>
+        </span>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -67,7 +70,7 @@ async function handleStoryFormSubmit(evt) {
 
   const newStoryMarkup = generateStoryMarkup(newStory);
   console.log(typeof newStoryMarkup)
-  console.log(newStoryMarkup.html())
+  // console.log(newStoryMarkup.html())
 
   $allStoriesList.prepend(newStoryMarkup);
   $allStoriesList.show();
@@ -78,3 +81,21 @@ async function handleStoryFormSubmit(evt) {
 }
 
 $storyForm.on("submit", handleStoryFormSubmit)
+
+/**
+ * add event listener to storylist, filter for clicks on .star, evoke handleFavorireClick function
+ */
+$allStoriesList.on("click", ".star", handleFavoriteClick)
+
+function handleFavoriteClick(evt) {
+  const storyId = $(evt.target).closest("li").attr("id");
+  let story;
+  // let story = storyList.getStory(storyId);
+  for (let eachStory of storyList.stories) {
+    if (eachStory.id === storyId) {
+      story = eachStory;
+    }
+  }
+
+
+}

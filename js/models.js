@@ -104,6 +104,14 @@ class StoryList {
     user.ownStories.unshift(story);
     return story;
   }
+
+  // async getStory(storyId) {
+  //   let storyData = await axios.get(`${BASE_URL}/stories/${storyId}`);
+  //   console.log("storyData", storyData, "storyData.data.story", storyData.data.story)
+
+  //   let story = new Story(storyData.data.story);
+  //   return story;
+  // }
 }
 
 
@@ -224,13 +232,13 @@ class User {
    * Add story to beginning of the favorites list and update database.
    */
   async addFavorite(story) {
-    await axios.post(`${BASE_URL}/users/${this.username}/favorites/${story.storyId}`, {token: this.loginToken});
+    await axios.post(`${BASE_URL}/users/${this.username}/favorites/${story.storyId}`, { token: this.loginToken });
     this.favorites.unshift(story);
   }
   /**
    * Remove story from favorites list and update database.
    */
-  async removeFavorite(story){
+  async removeFavorite(story) {
     await axios({
       url: `${BASE_URL}/users//${this.username}/favorites/${story.storyId}`,
       method: "DELETE",
