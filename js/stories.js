@@ -62,9 +62,16 @@ async function handleStoryFormSubmit(evt) {
     author: $("#story-author").val(),
     url: $("#story-url").val()
   }
-  await StoryList.addStory(currentUser, storyInput);
+  const newStory = await storyList.addStory(currentUser, storyInput); // generate markup and prepend;
+  console.log("newStory", newStory)
+
+  const newStoryMarkup = generateStoryMarkup(newStory);
+  console.log(newStoryMarkup.html())
+
+  $("#all-stories-list").prepend(newStoryMarkup);
+
   // console.log(newStory);
-  await getAndShowStoriesOnStart()
+
   $storyForm.hide();
 }
 

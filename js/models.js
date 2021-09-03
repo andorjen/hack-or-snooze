@@ -74,7 +74,7 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  static async addStory(user, newStory) {
+  async addStory(user, newStory) {
     //  write newStory info and user info into databse, returns a storyData object
     const storyData = await axios({
       url: `${BASE_URL}/stories`,
@@ -90,14 +90,19 @@ class StoryList {
     });
     // console.log(storyData);
     // get storyId, title, author, url, username, createdAt from storyData, create and return newStory
-    const storyId = storyData.data.story.storyId;
-    const title = storyData.data.story.title;
-    const author = storyData.data.story.author;
-    const url = storyData.data.story.url;
-    const username = storyData.data.story.username;
-    const createdAt = storyData.data.story.createdAt;
+    // const storyId = storyData.data.story.storyId;
+    // const title = storyData.data.story.title;
+    // const author = storyData.data.story.author;
+    // const url = storyData.data.story.url;
+    // const username = storyData.data.story.username;
+    // const createdAt = storyData.data.story.createdAt;
 
-    return new Story({ storyId, title, author, url, username, createdAt })
+    //!!!! update stories in srorylist and myown stories in User
+
+    const story = new Story(storyData.data.story);
+    this.stories.unshift(story);
+    user.ownStories.unshift(story);
+    return story;
   }
 }
 
