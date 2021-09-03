@@ -26,7 +26,7 @@ function generateStoryMarkup(story) {
   return $(`
       <li id="${story.storyId}">
         <span class="star">
-           <i class="far fa-star"> </i>
+          <i class="far fa-star"> </i>
         </span>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
@@ -87,12 +87,17 @@ $storyForm.on("submit", handleStoryFormSubmit)
  */
 $allStoriesList.on("click", ".fa-star", handleFavoriteClick)
 
-function handleFavoriteClick(evt) {
+async function handleFavoriteClick(evt) {
 
   const storyId = $(evt.target).closest("li").attr("id");
   let story = getStoryById(storyId);
-  // let story = storyList.getStory(storyId);
-
+  // if ($(evt.target).hasClass("far")) {
+  //   await currentUser.addFavorite(story);
+  // }
+  // else {
+  //   await currentUser.removeFavorite(story);
+  // };
+  // $(evt.target).toggleClass("far fas");
 }
 
 function getStoryById(id) {
@@ -102,3 +107,22 @@ function getStoryById(id) {
     }
   }
 }
+
+// If your element exposes class A from the start, you can write:
+
+// $(element).toggleClass("A B");
+
+// This will remove class A and add class B. If you do that again, it will remove class B and reinstate class A.
+
+// If you want to match the elements that expose either class, you can use a multiple class selector and write:
+
+// $(".A, .B").toggleClass("A B");
+
+// $("#yourButton").toggle(function() 
+// {
+//         $('#target').removeClass("a").addClass("b"); //Adds 'a', removes 'b'
+
+// }, function() {
+//         $('#target').removeClass("b").addClass("a"); //Adds 'b', removes 'a'
+
+// });
