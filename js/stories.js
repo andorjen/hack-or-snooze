@@ -85,17 +85,20 @@ $storyForm.on("submit", handleStoryFormSubmit)
 /**
  * add event listener to storylist, filter for clicks on .star, evoke handleFavorireClick function
  */
-$allStoriesList.on("click", ".star", handleFavoriteClick)
+$allStoriesList.on("click", ".fa-star", handleFavoriteClick)
 
 function handleFavoriteClick(evt) {
+
   const storyId = $(evt.target).closest("li").attr("id");
-  let story;
+  let story = getStoryById(storyId);
   // let story = storyList.getStory(storyId);
-  for (let eachStory of storyList.stories) {
-    if (eachStory.id === storyId) {
-      story = eachStory;
+
+}
+
+function getStoryById(id) {
+  for (let story of storyList.stories) {
+    if (story.id === id) {
+      return story;
     }
   }
-
-
 }
