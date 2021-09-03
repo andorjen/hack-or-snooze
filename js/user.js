@@ -111,14 +111,9 @@ function updateUIOnUserLogin() {
   console.debug("updateUIOnUserLogin");
 
   $allStoriesList.show();
-  addUserFavoritesUI();
+  currentUser.addUserFavoritesUI();
   updateNavOnLogin();
+  $loginForm.hide();
+  $signupForm.hide();
 }
 
-
-function addUserFavoritesUI() {
-  for (let story of currentUser.favorites) {
-    let storyId = `#${story.storyId}`
-    $(storyId).find(".fa-star").removeClass("far").addClass("fas")
-  }
-}

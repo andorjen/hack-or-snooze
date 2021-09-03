@@ -25,6 +25,23 @@ function navSubmitClick(evt) {
 $navSubmit.on("click", navSubmitClick);
 /** Show login/signup on click on "login" */
 
+function navFavoritesClick(evt) {
+  console.debug("navFavoritesClick", evt);
+  hidePageComponents();
+  putFavoriteStoriesOnPage();
+}
+
+$navFavorites.on("click", navFavoritesClick);
+
+function navMyStoriesClick(evt) {
+  console.debug("navMyStoriesClick", evt);
+  hidePageComponents();
+  putMyStoriesOnPage();
+}
+
+$navMyStories.on("click", navMyStoriesClick);
+
+/** Show login/signup on click on "login" */
 function navLoginClick(evt) {
   console.debug("navLoginClick", evt);
   hidePageComponents();

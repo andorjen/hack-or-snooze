@@ -50,7 +50,37 @@ function putStoriesOnPage() {
     const $story = generateStoryMarkup(story);
     $allStoriesList.append($story);
   }
+  currentUser.addUserFavoritesUI();
+  $allStoriesList.show();
+}
 
+/** Gets list of favorite stories from server, generates their HTML, and puts on page. */
+function putFavoriteStoriesOnPage() {
+  console.debug("putFavoriteStoriesOnPage");
+
+  $allStoriesList.empty();
+
+  // loop through all of our favorite stories and generate HTML for them
+  for (let story of currentUser.favorites) {
+    const $story = generateStoryMarkup(story);
+    $allStoriesList.append($story);
+  }
+  currentUser.addUserFavoritesUI();
+  $allStoriesList.show();
+}
+
+/** Gets list of my stories from server, generates their HTML, and puts on page. */
+function putMyStoriesOnPage() {
+  console.debug("putMyStoriesOnPage");
+
+  $allStoriesList.empty();
+
+  // loop through all of our favorite stories and generate HTML for them
+  for (let story of currentUser.ownStories) {
+    const $story = generateStoryMarkup(story);
+    $allStoriesList.append($story);
+  }
+  currentUser.addUserFavoritesUI();
   $allStoriesList.show();
 }
 

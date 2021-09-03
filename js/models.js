@@ -249,6 +249,24 @@ class User {
       return storyInfo.storyId !== story.storyId;
     })
   }
+
+  addUserFavoritesUI() {
+    for (let story of this.favorites) {
+      let storyId = `#${story.storyId}`;
+      $(storyId).find(".fa-star").removeClass("far").addClass("fas");
+    }
+  }
+
+  addMyStoriesUI() {
+    const favoriteIds = [];
+    for (let favoriteStory of this.favorites) {
+      favoriteIds.push(favoriteStory.storyId);
+    }
+    for (let story of this.ownStories) {
+      let storyId = `#${story.storyId}`;
+      if (favoriteIds.includes(story.storyId)) {
+        $(storyId).find(".fa-star").removeClass("far").addClass("fas");
+      }
+    }
+  }
 }
-
-
