@@ -66,9 +66,11 @@ async function handleStoryFormSubmit(evt) {
   console.log("newStory", newStory)
 
   const newStoryMarkup = generateStoryMarkup(newStory);
+  console.log(typeof newStoryMarkup)
   console.log(newStoryMarkup.html())
 
-  $("#all-stories-list").prepend(newStoryMarkup);
+  $allStoriesList.prepend(newStoryMarkup);
+  $allStoriesList.show();
 
   // console.log(newStory);
 
