@@ -90,19 +90,21 @@ $allStoriesList.on("click", ".fa-star", handleFavoriteClick)
 async function handleFavoriteClick(evt) {
 
   const storyId = $(evt.target).closest("li").attr("id");
+
   let story = getStoryById(storyId);
-  // if ($(evt.target).hasClass("far")) {
-  //   await currentUser.addFavorite(story);
-  // }
-  // else {
-  //   await currentUser.removeFavorite(story);
-  // };
-  // $(evt.target).toggleClass("far fas");
+
+  if ($(evt.target).hasClass("far")) {
+    await currentUser.addFavorite(story);
+  }
+  else {
+    await currentUser.removeFavorite(story);
+  };
+  $(evt.target).toggleClass("far fas");
 }
 
 function getStoryById(id) {
   for (let story of storyList.stories) {
-    if (story.id === id) {
+    if (story.storyId === id) {
       return story;
     }
   }
