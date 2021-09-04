@@ -98,10 +98,10 @@ async function handleStoryFormSubmit(evt) {
     url: $("#story-url").val()
   }
   const newStory = await storyList.addStory(currentUser, storyInput); // generate markup and prepend;
-  console.log("newStory", newStory)
+  // console.log("newStory", newStory)
 
   const newStoryMarkup = generateStoryMarkup(newStory);
-  console.log(typeof newStoryMarkup)
+  // console.log(typeof newStoryMarkup)
   // console.log(newStoryMarkup.html())
 
   $allStoriesList.prepend(newStoryMarkup);
@@ -135,7 +135,7 @@ async function handleFavoriteClick(evt) {
   else {
     await currentUser.removeFavorite(story);
   };
-  $(evt.target).toggleClass("far fas");
+  $(evt.target).toggleClass("far fas"); // TODO: seperate toggle concerns as a separate function
 }
 
 /** accept an id for story, get and return the story instance from storyList */

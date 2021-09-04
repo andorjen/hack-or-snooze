@@ -272,3 +272,5 @@ class User {
     }
   }
 }
+
+// TODO: move UI uodate functions to genreateMarkup functions
