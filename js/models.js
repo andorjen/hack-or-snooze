@@ -250,6 +250,7 @@ class User {
     })
   }
 
+  /** loop throug all user's favorites, and change the star to be solid on favorites */
   addUserFavoritesUI() {
     for (let story of this.favorites) {
       let storyId = `#${story.storyId}`;
@@ -257,6 +258,7 @@ class User {
     }
   }
 
+  /**loop through all of my stories, if exist in favorites, change star to be solid */
   addMyStoriesUI() {
     const favoriteIds = [];
     for (let favoriteStory of this.favorites) {

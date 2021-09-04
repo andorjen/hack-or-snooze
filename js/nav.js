@@ -25,6 +25,7 @@ function navSubmitClick(evt) {
 $navSubmit.on("click", navSubmitClick);
 /** Show login/signup on click on "login" */
 
+/** show favorite stories when click on nav-favorite */
 function navFavoritesClick(evt) {
   console.debug("navFavoritesClick", evt);
   hidePageComponents();
@@ -33,6 +34,7 @@ function navFavoritesClick(evt) {
 
 $navFavorites.on("click", navFavoritesClick);
 
+/**show user's ownStories when click on nav-my-stories */
 function navMyStoriesClick(evt) {
   console.debug("navMyStoriesClick", evt);
   hidePageComponents();

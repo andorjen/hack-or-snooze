@@ -50,7 +50,9 @@ function putStoriesOnPage() {
     const $story = generateStoryMarkup(story);
     $allStoriesList.append($story);
   }
-  currentUser.addUserFavoritesUI();
+  if (currentUser) {
+    currentUser.addUserFavoritesUI();
+  }
   $allStoriesList.show();
 }
 
@@ -110,13 +112,17 @@ async function handleStoryFormSubmit(evt) {
   $storyForm.hide();
 }
 
+/** add event listener to submit button in story submit form */
 $storyForm.on("submit", handleStoryFormSubmit)
 
 /**
- * add event listener to storylist, filter for clicks on .star, evoke handleFavorireClick function
+ * add event listener to storylist, filter for clicks on .fa-star, evoke handleFavorireClick function
  */
 $allStoriesList.on("click", ".fa-star", handleFavoriteClick)
 
+/** get the story id when a story star is clicked, use the id to find matching story in storyList
+ * run addFavorite or removeFavorite depending on the toggled class of star
+ */
 async function handleFavoriteClick(evt) {
 
   const storyId = $(evt.target).closest("li").attr("id");
@@ -132,6 +138,7 @@ async function handleFavoriteClick(evt) {
   $(evt.target).toggleClass("far fas");
 }
 
+/** accept an id for story, get and return the story instance from storyList */
 function getStoryById(id) {
   for (let story of storyList.stories) {
     if (story.storyId === id) {
@@ -139,22 +146,3 @@ function getStoryById(id) {
     }
   }
 }
-
-// If your element exposes class A from the start, you can write:
-
-// $(element).toggleClass("A B");
-
-// This will remove class A and add class B. If you do that again, it will remove class B and reinstate class A.
-
-// If you want to match the elements that expose either class, you can use a multiple class selector and write:
-
-// $(".A, .B").toggleClass("A B");
-
-// $("#yourButton").toggle(function() 
-// {
-//         $('#target').removeClass("a").addClass("b"); //Adds 'a', removes 'b'
-
-// }, function() {
-//         $('#target').removeClass("b").addClass("a"); //Adds 'b', removes 'a'
-
-// });

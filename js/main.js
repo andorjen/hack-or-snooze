@@ -31,7 +31,7 @@ function hidePageComponents() {
     $loginForm,
     $signupForm,
     $storyForm,
-    $favoriteStoriesList, 
+    $favoriteStoriesList,
     $myStoriesList
   ];
   components.forEach(c => c.hide());
@@ -41,7 +41,7 @@ function hidePageComponents() {
 
 async function start() {
   console.debug("start");
-
+  $(".main-nav-links").hide();
   // "Remember logged-in user" and log in, if credentials in localStorage
   await checkForRememberedUser();
   await getAndShowStoriesOnStart();
@@ -57,3 +57,4 @@ console.warn("HEY STUDENT: This program sends many debug messages to" +
   " seeing those helpful debug messages. In your browser console, click on" +
   " menu 'Default Levels' and add Verbose");
 $(start);
+
